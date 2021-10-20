@@ -18,21 +18,24 @@ grpc学习
     <https://github.com/protocolbuffers/protobuf/releases>
 
 ### 2、安装go插件库
-    ```
+```
     // gRPC运行时接口编解码支持库
     go get -u github.com/golang/protobuf/proto
+    
     // 从 Proto文件(gRPC接口描述文件) 生成 go文件 的编译器插件
     go get -u github.com/golang/protobuf/protoc-gen-go
-    ```
+```
 ### 3、编译 proto 文件
-    ```
+```
     protoc --go_out=plugins=grpc:./ ./protobufs/file.proto
+    
     protoc --go_out=plugins=grpc:./ ./protobufs/member.proto
+   
     protoc --go_out=plugins=grpc:{生成代码输出文件} {XXX}.proto
-
+```
 ### 4、根据业务实现 grpc 生成的接口
     例如当前示例中的 FileHandelServiceServer 和 MemberServiceServer
-    ```go
+```go
     // FileHandelServiceServer is the server API for FileHandelService service.
     type FileHandelServiceServer interface {
         Upload(FileHandelService_UploadServer) error
@@ -44,7 +47,7 @@ grpc学习
         GetUserInfo(context.Context, *GetUserInfoRequest) (*GetUserInfoResponse, error)
         GetUserList(context.Context, *GetUserListRequest) (*GetUserListResponse, error)
     }
-    ```
+```
     我们在 implement 文件夹下分别实现了这两个接口
 
 ### 5、开启服务
