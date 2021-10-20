@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package file;
+option go_package = "./services";
+
+service FileHandelService {
+  rpc upload(stream File) returns (Response);
+  rpc download(Request) returns (stream File);
+}
+
+message File {
+  bytes data = 1;
+}
+
+message Request {
+  int64 id = 1;
+}
+
+message Response {
+  int64  code = 1;
+  string msg  = 2;
+}
